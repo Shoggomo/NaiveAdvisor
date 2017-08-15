@@ -10,12 +10,13 @@ class Trainer(object):
         '''
         try:
             features = ({
-                'Cleanliness':   single_rating['Cleanliness'],
-                'Location':      single_rating['Location'],
-                'Rooms':         single_rating['Rooms'],
-                'Service':       single_rating['Service'],
-                #'Sleep Quality': single_rating['Sleep Quality'],
-                'Value':         single_rating['Value']
+                # TODO: Data with ratings of -1 are invalid
+                'Cleanliness':   single_rating['Cleanliness'] if single_rating['Cleanliness'] > 0 else 1,
+                'Location':      single_rating['Location'] if single_rating['Location'] > 0 else 1,
+                'Rooms':         single_rating['Rooms'] if single_rating['Rooms'] > 0 else 1,
+                'Service':       single_rating['Service'] if single_rating['Service'] > 0 else 1,
+                'Sleep Quality': single_rating['Sleep Quality'] if single_rating['Sleep Quality'] > 0 else 1,
+                'Value':         single_rating['Value'] if single_rating['Value'] > 0 else 1
                 }, single_rating['Overall'])
 
             return features
@@ -39,21 +40,28 @@ class Trainer(object):
                 valid = valid + 1 
             else:
                 invalid = invalid + 1
+        
+        print("Valid: {0} Invalid: {1}".format(valid, invalid))
         return feature_list
 
     def train_classifier(self):
-        next = self.review_reader.take_next()
+        next_reviews = self.review_reader.take_next()
     
-        while next != -1:
-            features = Trainer.create_feature_list(next)
-            # TODO: Classify
-            if self.classifier is None:
-                if len(features) > 1:
-                    self.classifier = naivebayes.NaiveBayesClassifier.train(features)
-            else:
-                self.classifier.train(features)
-                    
-            next = self.review_reader.take_next()
+        while next_reviews != -1:
+            try:
+                features = Trainer.create_feature_list(next_reviews)
+                # TODO: Classify
+                if self.classifier is None:
+                    if len(features) > 1:
+                        self.classifier = naivebayes.NaiveBayesClassifier.train(features)
+                    else:
+                        self.classifier.train(features)    
+            except Exception as ex:
+                print("Exception with message: {0}".format(ex.message))
+                pass
+            finally:
+                  next_reviews = self.review_reader.take_next()
+         
 
     def __init__(self, review_reader, document_count, classifier=None):    
         self.review_reader = review_reader

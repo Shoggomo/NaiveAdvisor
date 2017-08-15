@@ -15,7 +15,7 @@ class ReviewReader(object):
         '''
         Takes the next file in the directory and returns it as json object.
         '''
-        if self.last+1 <= self.filenames: 
+        if self.last + 1 < len(self.filenames): 
             json_object = ReviewReader.read_json(os.path.join(self.directory_path, self.filenames[self.last + 1])) 
             self.last = self.last + 1
             return json_object['Reviews']
@@ -42,6 +42,4 @@ class ReviewReader(object):
         self.last = -1
         self.directory_path = directory_path
         self.filenames = ReviewReader.get_file_list(self.directory_path)
-        self.test = self.take_next()
-        trainer.Trainer.create_feature_list(self.test)
 
