@@ -3,6 +3,7 @@ Handles interaction with test data.
 '''
 import os
 import json 
+import trainer
 
 class ReviewReader(object):
     '''
@@ -14,10 +15,12 @@ class ReviewReader(object):
         '''
         Takes the next file in the directory and returns it as json object.
         '''
-        if self.last+1 <= self.filenames: # TODO: self.last + 1 > self.filenames, abort condition
+        if self.last+1 <= self.filenames: 
             json_object = ReviewReader.read_json(os.path.join(self.directory_path, self.filenames[self.last + 1])) 
             self.last = self.last + 1
-            return json_object
+            return json_object['Reviews']
+        else:
+            return -1 # No file left
 
     @staticmethod
     def get_file_list(directory_path):
@@ -39,5 +42,6 @@ class ReviewReader(object):
         self.last = -1
         self.directory_path = directory_path
         self.filenames = ReviewReader.get_file_list(self.directory_path)
-        self.take_next()
+        self.test = self.take_next()
+        trainer.Trainer.create_feature_list(self.test)
 
