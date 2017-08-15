@@ -164,11 +164,10 @@ ENV/
 /site
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history
+.vscode
+*.pyc
+
+### Data Sets ###
+json
 
 # End of https://www.gitignore.io/api/python,pycharm,visualstudiocode
