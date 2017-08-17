@@ -1,4 +1,5 @@
 from nltk.classify import naivebayes
+from data_processing_helper import *
 
 class Trainer(object):
 
@@ -9,15 +10,25 @@ class Trainer(object):
         Returns the features if all 6 ratings are valid or None if they aren't.
         '''
         try:
+            if len(single_rating) is not 7:
+                raise KeyError('Expected 7 properties.')
+
+            it = DataProcessingHelper.iter_sorted(single_rating)
+
+            for i in it:
+                if int(float(i[1])) < 1 or int(float(i[1])) > 5:
+                    raise KeyError('Rating out of boundary')
+               
+                
             features = ({
                 # TODO: Data with ratings of -1 are invalid
-                'Cleanliness':   single_rating['Cleanliness'] if single_rating['Cleanliness'] > 0 else 1,
-                'Location':      single_rating['Location'] if single_rating['Location'] > 0 else 1,
-                'Rooms':         single_rating['Rooms'] if single_rating['Rooms'] > 0 else 1,
-                'Service':       single_rating['Service'] if single_rating['Service'] > 0 else 1,
-                'Sleep Quality': single_rating['Sleep Quality'] if single_rating['Sleep Quality'] > 0 else 1,
-                'Value':         single_rating['Value'] if single_rating['Value'] > 0 else 1
-                }, single_rating['Overall'])
+                'Cleanliness':   single_rating['Cleanliness'],
+                'Location':      single_rating['Location'],
+                'Rooms':         single_rating['Rooms'],
+                'Service':       single_rating['Service'], 
+                'Sleep Quality': single_rating['Sleep Quality'],
+                'Value':         single_rating['Value']
+                }, str(single_rating['Overall']))
 
             return features
         except KeyError as error: # not all required ratings are there
@@ -50,21 +61,17 @@ class Trainer(object):
         while next_reviews != -1:
             try:
                 features = Trainer.create_feature_list(next_reviews)
-                # TODO: Classify
-                if self.classifier is None:
-                    if len(features) > 1:
-                        self.classifier = naivebayes.NaiveBayesClassifier.train(features)
-                    else:
-                        self.classifier.train(features)    
+                self.all_features.extend(features)
             except Exception as ex:
                 print("Exception with message: {0}".format(ex.message))
-                pass
             finally:
                   next_reviews = self.review_reader.take_next()
+        self.classifier = naivebayes.NaiveBayesClassifier.train(self.all_features)
+        pass # set breakpoint here to access classifier
          
 
     def __init__(self, review_reader, document_count, classifier=None):    
         self.review_reader = review_reader
         self.classifier = classifier
-
+        self.all_features = []
 

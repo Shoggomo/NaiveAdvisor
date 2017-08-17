@@ -10,10 +10,15 @@ import pickle
 
 def save_classifier(classifier):
     '''Saves classifier to file'''
-    f = open('my_classifier.pickle', 'wb') # TODO: Error handling
-    pickle.dump(classifier, f, -1)
-    f.close()
-
+    try:
+        f = open('my_classifier.pickle', 'wb') # TODO: Error handling
+        pickle.dump(classifier, f, -1)
+    except IOError as error:
+        print(
+            "Could not save classifier. Do you have permission to write in this directory? Error: " + error.strerror)
+    finally:
+        if f is not None and not f.closed:
+            f.close
 
 def load_classifier():
     '''Loads classifier from file'''
