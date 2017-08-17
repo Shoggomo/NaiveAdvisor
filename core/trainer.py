@@ -22,12 +22,12 @@ class Trainer(object):
                 
             features = ({
                 # TODO: Data with ratings of -1 are invalid
-                'Cleanliness':   single_rating['Cleanliness'],
-                'Location':      single_rating['Location'],
-                'Rooms':         single_rating['Rooms'],
-                'Service':       single_rating['Service'], 
-                'Sleep Quality': single_rating['Sleep Quality'],
-                'Value':         single_rating['Value']
+                'Cleanliness':   int(single_rating['Cleanliness']),
+                'Location':      int(single_rating['Location']),
+                'Rooms':         int(single_rating['Rooms']),
+                'Service':       int(single_rating['Service']), 
+                'Sleep Quality': int(single_rating['Sleep Quality']),
+                'Value':         int(single_rating['Value'])
                 }, str(single_rating['Overall']))
 
             return features
@@ -67,6 +67,7 @@ class Trainer(object):
             finally:
                   next_reviews = self.review_reader.take_next()
         self.classifier = naivebayes.NaiveBayesClassifier.train(self.all_features)
+        self.classifier.show_most_informative_features(5)
         pass # set breakpoint here to access classifier
          
 
