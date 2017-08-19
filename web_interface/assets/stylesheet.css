@@ -1,0 +1,33 @@
+body{
+    background-image: url('https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_960_720.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#container{
+    background-color: #fdfdfd;
+    margin: 25px;
+    padding: 20px;
+}
+
+h1{
+    color: #555555;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+}
+
+.text_container{
+    background-color:#ccdffa;
+    padding: 20px;
+}
+
+.text{
+    background-color:#74ADD1;
+    padding: 20px;
+    color: #fff;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+}
+
+#chartDiv{
+    background-color:#ccdffa;
+
+}
