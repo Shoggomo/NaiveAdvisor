@@ -55,7 +55,7 @@ class Trainer(object):
         print("Valid: {0} Invalid: {1}".format(valid, invalid))
         return feature_list
 
-    def train_classifier(self):
+    def train_classifier(self, callback):
         next_reviews = self.review_reader.take_next()
     
         while next_reviews != -1:
@@ -68,7 +68,7 @@ class Trainer(object):
                   next_reviews = self.review_reader.take_next()
         self.classifier = naivebayes.NaiveBayesClassifier.train(self.all_features)
         self.classifier.show_most_informative_features(5)
-        pass # set breakpoint here to access classifier
+        callback(self.classifier)
          
 
     def __init__(self, review_reader, document_count, classifier=None):    
