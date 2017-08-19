@@ -92,12 +92,14 @@ class Trainer(object):
                 feature_data = Trainer.create_feature_list(next_reviews) # creating a featurelist from json object
                 features = feature_data[0] # features are at index 0 
                 all_features.extend(features) # adding features extracted from the last .json file
+
                 this_valid_features += feature_data[1][0] # counting valid features (ratings) used by the classifier
                 this_invalid_features += feature_data[1][1] # counting invalid features (ratings) ignored by the classifier
             except Exception as ex: # general exception because unexpected
                 print("Exception with message: {0}".format(ex.message)) # unexpected exception ocurred, printing it
             finally:
                   next_reviews = review_reader.take_next() # file has been processed, using next file
+
         classifier = naivebayes.NaiveBayesClassifier.train(all_features) # training classifier with all_featuers
         classifier.show_most_informative_features(5) # printing most informative features in console
         callback(classifier, (this_valid_features, this_invalid_features)) # returning a tupel, index 0 is the classifier and index 1

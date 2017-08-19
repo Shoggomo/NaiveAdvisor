@@ -5,6 +5,7 @@
 
 import pickle
 from data_processing_helper import *
+import json
 
 class Classifier(object):  
     '''
@@ -17,7 +18,7 @@ class Classifier(object):
     def save_classifier(classifier):
         '''Saves classifier to file'''
         try:
-            f = open('my_classifier.pickle', 'wb') # TODO: Error handling
+            f = open('my_classifier.pickle', 'wb') 
             pickle.dump(classifier, f, -1)
         except IOError as error:
             print(
@@ -43,6 +44,30 @@ class Classifier(object):
                 f.close()
     
         return classifier
+
+    @staticmethod 
+    def save_valid_ratings_statistic(valid_ratings_tuple):
+        '''
+        Writes the valid/invalid ratings in a file
+        '''
+        DataProcessingHelper.write_json('statistic', 
+            {
+                'valid': valid_ratings_tuple[0],
+                'invalid': valid_ratings_tuple[1]
+            })
+    
+    @staticmethod
+    def read_valid_ratings_statistic():
+        '''
+        Reads the valid/invalid ratings from the file.
+        '''
+        statistic_json = -1
+        try:
+            statistic_json = DataProcessingHelper.read_json('statistic')
+        except IOError:
+            pass # nothing to do here
+        
+        return statistic_json
     
     # Information about classifier
     @staticmethod
