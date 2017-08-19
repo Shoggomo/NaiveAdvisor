@@ -5,6 +5,19 @@ import os
 
 
 class SuperVisor(object):
+    
+    def on_trained_classifier(self, trained_classifier):
+        '''
+        Callback method, called when classifier has been trained.
+        '''
+        Classifier.save_classifier(trained_classifier)
+
+    def classify(self, features):
+        '''
+        Takes features and uses the classifier of this class to return a label.
+        '''
+        return Classifier.classify(self.classifier, features)
+
     def __init__(self):
         self.classifier = classifier.load_classifier()
         if(self.classifier == -1):
