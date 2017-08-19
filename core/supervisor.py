@@ -5,7 +5,12 @@ import os
 
 
 class SuperVisor(object):
-    
+    '''
+    This is the main module of the core folder. It uses the other modules to train a classifier or 
+    to read it from a file. 
+    This class is the only module in the core folder which should be used by other modules (not in this folder).
+    Use this module to interact with the classifier.
+    '''
     def on_trained_classifier(self, trained_classifier):
         '''
         Callback method, called when classifier has been trained.

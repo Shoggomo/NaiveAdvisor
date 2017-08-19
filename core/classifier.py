@@ -7,6 +7,11 @@ import pickle
 from data_processing_helper import *
 
 class Classifier(object):  
+    '''
+    Static helper class providing static methods to interact with classifier object.
+    Supports saving and loading a classifier from a file.
+    Provides a static method to classify features and to extract the most useful features.
+    '''
     # I/O
     @staticmethod
     def save_classifier(classifier):
@@ -62,7 +67,6 @@ class Classifier(object):
 
         required_featues = DataProcessingHelper.required_features()
 
-        # FIXME: Check if key names are correct, if not throw exception
         try:
             for i in range(len(required_featues)):
                 features[required_featues[i]]
