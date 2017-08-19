@@ -4,6 +4,7 @@
 '''
 
 import pickle
+from data_processing_helper import *
 
 class Classifier(object):  
     # I/O
@@ -45,14 +46,30 @@ class Classifier(object):
         return classifier.most_informative_features(n)
 
     @staticmethod
-    def classify(classifier, features): # TODO: better exception handling
-        '''Uses the classifier to classify the features and returns the label as result.'''
-        if len(fea)
+    def classify(classifier, features): 
+        '''
+        Uses the classifier to classify the features and returns the label as result.
+        Catch ValueErrors when you use this.
+        '''
+        if len(features) is not 6:
+            raise ValueError("You need to specify exactly 6 features!")
+
+        it = DataProcessingHelper.iter_sorted(features)
+
+        for i in it:
+            if int(float(i[1])) < 1 or int(float(i[1])) > 5:
+                raise ValueError('Rating out of boundary')
+
+        required_featues = DataProcessingHelper.required_features()
+
+        # FIXME: Check if key names are correct, if not throw exception
         try:
-            label = classifier.classify(features)
-            return label 
-        except Exception as error:
-            raise # throw exception anyway
+            for i in range(len(required_featues)):
+                features[required_featues[i]]
+        except KeyError as error:
+            raise ValueError('Wrong feature name(s) Message: ' + error.message)
+
+        return classifier.classify(features)
     
     
 # only a module for project

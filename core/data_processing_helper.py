@@ -15,4 +15,9 @@ class DataProcessingHelper(object):
         while keys:
             k = heapq.heappop(keys) # takes O(log n) time
             yield (k, dictionary[k])
+
+
+    @staticmethod
+    def required_features():
+        return  ['Cleanliness', 'Location', 'Rooms', 'Service','Sleep Quality','Value']
     

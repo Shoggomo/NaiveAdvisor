@@ -22,12 +22,12 @@ class Trainer(object):
                 
             features = ({
                 # TODO: Data with ratings of -1 are invalid
-                'Cleanliness':   single_rating['Cleanliness'],
-                'Location':      single_rating['Location'],
-                'Rooms':         single_rating['Rooms'],
-                'Service':       single_rating['Service'], 
-                'Sleep Quality': single_rating['Sleep Quality'],
-                'Value':         single_rating['Value']
+                'Cleanliness':   int(single_rating['Cleanliness']),
+                'Location':      int(single_rating['Location']),
+                'Rooms':         int(single_rating['Rooms']),
+                'Service':       int(single_rating['Service']), 
+                'Sleep Quality': int(single_rating['Sleep Quality']),
+                'Value':         int(single_rating['Value'])
                 }, str(single_rating['Overall']))
 
             return features
@@ -55,7 +55,7 @@ class Trainer(object):
         print("Valid: {0} Invalid: {1}".format(valid, invalid))
         return feature_list
 
-    def train_classifier(self):
+    def train_classifier(self, callback):
         next_reviews = self.review_reader.take_next()
     
         while next_reviews != -1:
@@ -67,7 +67,8 @@ class Trainer(object):
             finally:
                   next_reviews = self.review_reader.take_next()
         self.classifier = naivebayes.NaiveBayesClassifier.train(self.all_features)
-        pass # set breakpoint here to access classifier
+        self.classifier.show_most_informative_features(5)
+        callback(self.classifier)
          
 
     def __init__(self, review_reader, document_count, classifier=None):    

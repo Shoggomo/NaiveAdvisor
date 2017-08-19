@@ -29,7 +29,7 @@ class ReviewReader(object):
         '''
         return [name for name in os.listdir(directory_path)]
 
-    @staticmethod   # TODO: Error handling
+    @staticmethod   
     def read_json(path):
         '''
         Loads content from a file into memory as json object.
