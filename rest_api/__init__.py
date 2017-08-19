@@ -14,13 +14,9 @@ def weights():
 
 @app.route('/classify', methods=['POST'])
 def classify():
-    service = request.form['service']
-    cleanliness = request.form['cleanliness']
-    value = request.form['value']
-    sleep_quality = request.form['sleep-quality']
-    rooms = request.form['rooms']
-    location = request.form['location']
+    categories = ['service', 'cleanliness', 'value', 'sleep-quality', 'rooms', 'location']
+    features = {category: request.json[category] for category in categories}
     # classify(service, ...)
-    return "3.4" # mockdata
+    return str(reduce(lambda pre, curr: pre + int(curr), features.values(), 0))  # mockdata
 
 app.run(port=5000)
