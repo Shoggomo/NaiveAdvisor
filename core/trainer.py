@@ -1,7 +1,17 @@
 from nltk.classify import naivebayes
 from data_processing_helper import *
 
+# TODO: Consider making Trainer a static class
+# or restructure the class making it more accessible for others
 class Trainer(object):
+
+    # static variables:
+    lowest_valid_rating = 1 # range in which a rating is considered as valid
+    highest_valid_rating = 5
+    valid_rating_properties_count = 7 # a valid rating has exactly 7 properties
+
+    all_valid_ratings_count = 0
+    all_invalid_ratings_count = 0
 
     @staticmethod
     def extract_features(single_rating):
@@ -10,13 +20,13 @@ class Trainer(object):
         Returns the features if all 6 ratings are valid or None if they aren't.
         '''
         try:
-            if len(single_rating) is not 7:
+            if len(single_rating) is not Trainer.valid_rating_properties_count:
                 raise KeyError('Expected 7 properties.')
 
             it = DataProcessingHelper.iter_sorted(single_rating)
 
             for i in it:
-                if int(float(i[1])) < 1 or int(float(i[1])) > 5:
+                if int(float(i[1])) < Trainer.lowest_valid_rating or int(float(i[1])) > Trainer.highest_valid_rating:
                     raise KeyError('Rating out of boundary')
                
                 
@@ -52,10 +62,17 @@ class Trainer(object):
             else:
                 invalid = invalid + 1
         
+        Trainer.all_valid_ratings_count += valid
+        Trainer.all_invalid_ratings_count += invalid
+
         print("Valid: {0} Invalid: {1}".format(valid, invalid))
         return feature_list
 
     def train_classifier(self, callback):
+        '''
+        Trains a classifier using the review_reader to extract data from the json files.
+        After the training the classifier is being saved and the callback function is being invoked.
+        '''
         next_reviews = self.review_reader.take_next()
     
         while next_reviews != -1:
