@@ -1,7 +1,6 @@
 from classifier import *
-import review_reader
-import trainer
-import os
+from trainer import *
+
 
 
 class SuperVisor(object):
@@ -11,11 +10,12 @@ class SuperVisor(object):
     This class is the only module in the core folder which should be used by other modules (not in this folder).
     Use this module to interact with the classifier.
     '''
-    def on_trained_classifier(self, trained_classifier):
+    def on_trained_classifier(self, trained_classifier, features_count):
         '''
         Callback method, called when classifier has been trained.
         '''
         Classifier.save_classifier(trained_classifier)
+        print(features_count)
 
     def classify(self, features):
         '''
@@ -23,14 +23,12 @@ class SuperVisor(object):
         '''
         return Classifier.classify(self.classifier, features)
 
-    def __init__(self):
+    def __init__(self, loaded_callback, force_training=False):
         self.classifier = Classifier.load_classifier()
-        if(self.classifier == -1):
-            self.review_reader = review_reader.ReviewReader()
-            self.trainer = trainer.Trainer(self.review_reader, 10)
-            self.trainer.train_classifier(self.on_trained_classifier)
-            pass 
+
+        if force_training or self.classifier is -1:
+            Trainer.train_classifier(self.on_trained_classifier)
+        
 
 
-
-super_visor = SuperVisor()
+super_visor = SuperVisor(None)
