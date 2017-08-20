@@ -28,7 +28,7 @@ class ReviewReader(object):
         '''
         return [name for name in os.listdir(directory_path)]
 
-    def __init__(self, directory_path=os.path.dirname(os.getcwd())+'/json'):
+    def __init__(self, directory_path=os.path.join(os.getcwd(), 'json')):
         self.last = -1
         self.directory_path = directory_path
         self.filenames = ReviewReader.get_file_list(self.directory_path)
