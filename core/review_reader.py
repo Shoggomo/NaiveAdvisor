@@ -2,8 +2,6 @@
 Handles interaction with test data.
 '''
 import os
-import json 
-import trainer
 from data_processing_helper import *
 
 class ReviewReader(object):

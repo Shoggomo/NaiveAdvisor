@@ -5,7 +5,6 @@
 
 import pickle
 from data_processing_helper import *
-import json
 
 class Classifier(object):  
     '''
@@ -46,18 +45,19 @@ class Classifier(object):
         return classifier
 
     @staticmethod 
-    def save_valid_ratings_statistic(valid_ratings_tuple):
+    def save_statistics(statistics):
         '''
         Writes the valid/invalid ratings in a file
         '''
         DataProcessingHelper.write_json('statistic', 
             {
-                'valid': valid_ratings_tuple[0],
-                'invalid': valid_ratings_tuple[1]
+                'valid': statistics[0],
+                'invalid': statistics[1],
+                'accuracy': statistics[2]
             })
     
     @staticmethod
-    def read_valid_ratings_statistic():
+    def read_statistics():
         '''
         Reads the valid/invalid ratings from the file.
         '''
@@ -71,7 +71,7 @@ class Classifier(object):
     
     # Information about classifier
     @staticmethod
-    def most_useful_features(classifier, n=1):
+    def most_useful_features(classifier, n=10):
         '''Returns the most useful n features of the given classifier'''
         return classifier.most_informative_features(n)
 

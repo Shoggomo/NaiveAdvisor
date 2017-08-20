@@ -1,3 +1,4 @@
+import nltk 
 from nltk.classify import naivebayes
 from data_processing_helper import *
 from review_reader import *
@@ -11,6 +12,9 @@ class Trainer(object):
     lowest_valid_rating = 1 # range in which a rating is considered as valid
     highest_valid_rating = 5
     valid_rating_properties_count = 7 # a valid rating has exactly 7 properties
+    training_set_percentage = 0.8 # part of labeled features used for training (max 1 = 100%)
+    test_set_percentage = 0.2 # part of labeled features used for testing (max 1-training_set_percentage)
+                              # used for evaluating accuracy
 
     all_valid_ratings_count = 0 # valid and invalid ratings used for all classifier trainings
     all_invalid_ratings_count = 0
@@ -82,7 +86,8 @@ class Trainer(object):
         review_reader = ReviewReader()
         next_reviews = review_reader.take_next()
 
-        all_features = [] # *all* features extracted by *all* files
+        all_training_features = [] # *all* features extracted by *all* files 
+        all_test_features = []
 
         this_valid_features = 0 # valid/invalid feature count used for *this* training
         this_invalid_features = 0
@@ -90,8 +95,11 @@ class Trainer(object):
         while next_reviews != -1: # while there is a next .json file containing reviews
             try:
                 feature_data = Trainer.create_feature_list(next_reviews) # creating a featurelist from json object
-                features = feature_data[0] # features are at index 0 
-                all_features.extend(features) # adding features extracted from the last .json file
+                training_features = feature_data[0][:int(Trainer.training_set_percentage * len(feature_data[0]))] # labeled features are at index 0 
+                test_features = feature_data[0][-int(Trainer.test_set_percentage * len(feature_data[0])):]
+                
+                all_training_features.extend(training_features) # adding features extracted from the last .json file
+                all_test_features.extend(test_features)
 
                 this_valid_features += feature_data[1][0] # counting valid features (ratings) used by the classifier
                 this_invalid_features += feature_data[1][1] # counting invalid features (ratings) ignored by the classifier
@@ -100,9 +108,11 @@ class Trainer(object):
             finally:
                   next_reviews = review_reader.take_next() # file has been processed, using next file
 
-        classifier = naivebayes.NaiveBayesClassifier.train(all_features) # training classifier with all_featuers
+        classifier = naivebayes.NaiveBayesClassifier.train(all_training_features) # training classifier with all_featuers
+        accuracy = nltk.classify.accuracy(classifier, all_test_features)
         classifier.show_most_informative_features(5) # printing most informative features in console
-        callback(classifier, (this_valid_features, this_invalid_features)) # returning a tupel, index 0 is the classifier and index 1
+        callback(classifier, (this_valid_features, this_invalid_features, accuracy)) # returning a tupel, index 0 is the classifier and index 1
                                                                            # is a tupel containing the count of valid features used
-                                                                           # by the classifier and invalid features which have been ignored.
+                                                                           # by the classifier, invalid features which have been ignored
+                                                                           # and the accuracy evaluated by using the test set.
          
