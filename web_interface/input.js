@@ -11,13 +11,13 @@ function clickHandler(){
     var location = document.getElementById('location').value;
     var rooms = document.getElementById('rooms').value;
     var all = [service, cleanliness, value, sleep_quality, location, rooms];
-    var names = ['service', 'cleanliness', 'value', 'sleep_quality', 'location', 'rooms'];
+    var names = ['Service', 'Cleanliness', 'Value', 'Sleep Quality', 'Location', 'Rooms'];
     console.log(names);
     console.log(service);
     console.log(document.getElementById('service').innerHTML);
     console.log(all);
 
-    var string = "http://127.0.0.1:5000/classifier?";
+    var string = "http://127.0.0.1:5000/classify?";
     var i;
     for(i=0; i< 6; i++)
     {
