@@ -1,7 +1,4 @@
 function pie_chart(input) {
-    console.log(input);
-    var ultimateColors = [['rgb(146, 123, 21)', 'rgb(177, 180, 34)', 'rgb(206, 206, 40)', 'rgb(175, 51, 21)', 'rgb(35, 36, 21)']];
-
     var data = [{
         values: Object.values(input),
         labels: Object.keys(input),
@@ -17,7 +14,9 @@ function pie_chart(input) {
     font:
         {
             color:'#555555'
-        }
+        },
+    height: 400,
+    width: 500
 
 }
 

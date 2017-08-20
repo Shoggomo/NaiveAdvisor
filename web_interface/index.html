@@ -5,7 +5,9 @@
     <script src="assets/plotly-latest.min.js"></script>
     <script src="assets/request.js"></script>
     <script src="pie_chart.js" defer></script>
-    <script src="data.js" defer></script>
+    <script src="input.js" defer></script>
+    <script src="get_data.js" defer></script>
+    <script src="send_data.js" defer></script>
     <meta charset="UTF-8">
     <title>Naive</title>
 </head>
@@ -13,22 +15,96 @@
 <body>
     <div id="container">
         <h1>Naive Bayes</h1>
-        <div id="chartDiv"></div>
         <div class="text_container">
-            <div class="text">
-                <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-                duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-            </div>
+            <table>
+                <tr>
+                    <td class="left_side">
+                        <table style="height: 100%">
+                            <tr>
+                                <td valign="top">
+                                    <div id="chartDiv"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="bottom">
+                                    <div class="text">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+                                        duo dolores et ea rebum. Stet clita kasd gubergren,
+                                        no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+                                        duo dolores et ea rebum. Stet clita kasd gubergren,
+                                        no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td valign="top" class="right_side">
+                        <table style="height: 100%;">
+                            <tr>
+                                <td valign="top">
+                                    <table id="tryit">
+                                        <tr>
+                                            <td id="input_form">
+                                                <table>
+                                                    <tr>
+                                                        <td class="input_title"><h3>Service:</h3></td><td class="input_field"><input type="text" name="service" id="service"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="input_title"><h3>Sauberkeit:</h3></td><td class="input_field"><input type="text" name="cleanliness" id="cleanliness"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="input_title"><h3>Wert:</h3></td><td class="input_field"><input type="text" name="value" id="value"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="input_title"><h3>Schlafqualität:</h3></td><td class="input_field"><input type="text" name="sleep_quality" id="sleep_quality"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="input_title"><h3>Lage:</h3></td><td class="input_field"><input type="text" name="location" id="location"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="input_title"><h3>Räumlichkeiten:</h3></td><td class="input_field"><input type="text" name="rooms" id="rooms"></td>
+                                                    </tr>
+                                                </table>
+                                        </td>
+                                        <td id="result">
+                                            <div><span class="result_text">Nach Verrechnung der Eingaben ergibt sich folgender Wert: </span><span class="result_number">over 9000</span></div>
+                                        </td>
+                                        </tr>
+                                    </table>
+                                    <button id="send">send</button>
+                                    <div id="test">Hallo</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="bottom">
+                                    <div class="text">
+                                        <p>
+                                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+                                            duo dolores et ea rebum. Stet clita kasd gubergren,
+                                            no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+                                            duo dolores et ea rebum. Stet clita kasd gubergren,
+                                            no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </body>
