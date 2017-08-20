@@ -78,11 +78,12 @@ class Trainer(object):
                                                 # 1 a tupel containing the count of valid, invalid ratings
 
     @staticmethod
-    def train_classifier(callback):
+    def train_classifier(callback, max_files):
         '''
         Trains a classifier using the review_reader to extract data from the json files.
         After the training the classifier is being saved and the callback function is being invoked.
         '''
+        file_count = 0
         review_reader = ReviewReader()
         next_reviews = review_reader.take_next()
 
@@ -92,8 +93,9 @@ class Trainer(object):
         this_valid_features = 0 # valid/invalid feature count used for *this* training
         this_invalid_features = 0
     
-        while next_reviews != -1: # while there is a next .json file containing reviews
+        while next_reviews != -1 and (max_files is -1 or file_count < max_files): # while there is a next .json file containing reviews
             try:
+                file_count += 1
                 feature_data = Trainer.create_feature_list(next_reviews) # creating a featurelist from json object
                 training_features = feature_data[0][:int(Trainer.training_set_percentage * len(feature_data[0]))] # labeled features are at index 0 
                 test_features = feature_data[0][-int(Trainer.test_set_percentage * len(feature_data[0])):]

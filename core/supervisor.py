@@ -42,13 +42,14 @@ class SuperVisor(object):
         '''
         return Classifier.most_useful_features(self.classifier, n)
 
-    def __init__(self, loaded_callback, force_training=False):
+    def __init__(self, loaded_callback, force_training=False, max_files=-1):
+        self.max_files = max_files
         self.loaded_callback = loaded_callback
         self.classifier = Classifier.load_classifier()
         self.statistics = Classifier.read_statistics()
 
         if force_training or (self.classifier is -1) or (self.statistics is -1):
-            Trainer.train_classifier(self.on_trained_classifier)
+            Trainer.train_classifier(self.on_trained_classifier, max_files)
         else:
             self.loaded_callback(self)
 
