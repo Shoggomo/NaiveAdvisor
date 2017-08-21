@@ -11,7 +11,12 @@ body{
 }
 
 h1{
-    color: #555555;
+    color: #444444;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+}
+
+h3{
+    color: #4575b4;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
 }
 
@@ -27,7 +32,7 @@ h1{
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
 }
 
-#chartDiv{
-    background-color:#ccdffa;
-
+.text_dark{
+    color: #4575b4;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
 }

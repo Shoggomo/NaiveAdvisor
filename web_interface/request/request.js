@@ -1,7 +1,6 @@
-/* eslint-env browser */
+/*****von Alexander Bazo - Skript zur Verbindung zum Server*****/
 
 var request = request || (function() {
-  "use strict";
 
   const READY_STATES = {
       UNITIALIZED: 0,
