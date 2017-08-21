@@ -1,4 +1,12 @@
 /*****Holen der Daten*****/
+function getStatistics() {
+request({
+          url: "http://127.0.0.1:5000/statistics",
+          method: "GET",
+          success: (data) => showStatistics(data),
+          error: () => document.getElementById('con_error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
+ });
+}
 function sendData(string){
 request({
           url: string,
@@ -7,11 +15,18 @@ request({
           error: () => document.getElementById('con_error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
  });
 }
-isCorrect(value)
+
+function showStatistics(data) {
+    statistics = JSON.parse(data);
+    document.getElementById('accuracy').innerHTML = statistics.accuracy;
+    document.getElementById('valid').innerHTML = statistics.valid;
+
+}
+function isCorrect(value)
 {
     if (isNaN(value) || (value < 1 || value > 5)) {
         document.getElementById('input_error').innerHTML = "Einer der Werte ist nicht zulässig. Beachten Sie, dass es sich bei Ihrer Eingabe um Zahlen zwischen 1 und 5 handeln muss";
-        return;
+        return false;
     }
 }
 
@@ -55,3 +70,5 @@ function clickHandler(){
     elementIsClicked = true;
     sendData(string);
 }
+
+getStatistics();

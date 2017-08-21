@@ -7,10 +7,9 @@ CORS(app)
 supervisor = None
 
 
-@app.route('/weights')
+@app.route('/statistics')
 def weights():
-    data = {"Service": 1/6., "Cleanliness": 1/6., "Value": 1/6., "Sleep Quality": 1/6., "Rooms": 1/6., "Location": 1/6.} # mockdata
-    # data = supervisor.get_statistics()
+    data = supervisor.get_statistics()
     return json.dumps(data)
 
 
