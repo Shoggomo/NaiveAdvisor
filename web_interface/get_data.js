@@ -3,28 +3,18 @@ function getStatistics() {
   request({
       url: "http://127.0.0.1:5000/statistics",
       method: "GET",
-      success: (data) = > showStatistics(data),
-    error
-:
-  () =
->
-  document.getElementById('error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
-})
-  ;
+      success: (data) => showStatistics(data),
+    error: () => document.getElementById('error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
+});
 }
 
 function sendData(string) {
   request({
       url: string,
       method: "GET",
-      success: (data) = > document.querySelector('.result_number').innerHTML = data,
-    error
-:
-  () =
->
-  document.getElementById('error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
-})
-  ;
+      success: (data) => document.querySelector('.result_number').innerHTML = data,
+      error:() => document.getElementById('error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
+});
 }
 
 /*****Eintragen der Werte*****/
