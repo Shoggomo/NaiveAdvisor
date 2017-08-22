@@ -1,38 +1,79 @@
-body{
-    background-image: url('https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_960_720.jpg');
+body {
+    /*background-image: url('https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_960_720.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;*/
+    background-color: #d6f5ff;
 }
 
-#container{
+#container {
     background-color: #fdfdfd;
     margin: 25px;
     padding: 20px;
 }
 
-h1{
+#tryit {
+    margin-top: 50px;
+    width: 100%;
+}
+
+h1 {
     color: #444444;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
 }
 
-h3{
+h3 {
     color: #4575b4;
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+    font-family: "Lucinda Grande", "Lucinda Sans Unicode", 'Geneva', 'Verdana', sans-serif;
+    margin-right: 20px;
 }
 
-.text_container{
-    background-color:#ccdffa;
+#accuracy, #valid {
+    color: #f46d43;
+    font-weight: bold;
+}
+
+.text_container {
+    background-color: #ccdffa;
     padding: 20px;
 }
 
-.text{
-    background-color:#74ADD1;
+.text {
+    background-color: #74ADD1;
     padding: 20px;
     color: #fff;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+    font-size: 18px;
 }
 
-.text_dark{
+.text_dark {
     color: #4575b4;
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+}
+
+#result > div {
+    width: 75%;
+    margin: auto;
+    font-family: "Lucinda Grande", "Lucinda Sans Unicode", 'Geneva', 'Verdana', sans-serif;
+    font-size: 20px;
+}
+
+.result_text {
+    color: #4575b4;
+}
+
+.result_number {
+    color: #f46d43;
+}
+
+#error {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+#button {
+    margin-top: 50px;
+    padding: 5px 12px;
+    font-size: 16px;
+    font-family: "Lucinda Grande", "Lucinda Sans Unicode", 'Geneva', 'Verdana', sans-serif;
 }

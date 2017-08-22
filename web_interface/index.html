@@ -9,61 +9,60 @@
 </head>
 
 <body>
-    <div id="container">
-        <h1>Beispiel: Tripadvisor Hotelbewertungen</h1>
-        <div class="text_container">
-                        <table style="height: 100%;">
-                            <tr>
-                                <td valign="top">
-                                    <table id="tryit">
-                                        <tr>
-                                            <td id="input_form">
-                                                <table>
-                                                    <tr>
-                                                        <td class="input_title"><h3>Service:</h3></td><td class="input_field"><input type="text" name="service" id="service"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="input_title"><h3>Sauberkeit:</h3></td><td class="input_field"><input type="text" name="cleanliness" id="cleanliness"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="input_title"><h3>Wert:</h3></td><td class="input_field"><input type="text" name="value" id="value"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="input_title"><h3>Schlafqualität:</h3></td><td class="input_field"><input type="text" name="sleep_quality" id="sleep_quality"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="input_title"><h3>Lage:</h3></td><td class="input_field"><input type="text" name="location" id="location"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="input_title"><h3>Räumlichkeiten:</h3></td><td class="input_field"><input type="text" name="rooms" id="rooms"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><button id="send">send</button></td><td><p class="input_error text_dark"></p></td>
-                                                    </tr>
-                                                </table>
-                                                <p class="con_error text_dark"></p>
-                                        </td>
-                                        <td id="result">
-                                            <div><span class="result_text">Nach Verrechnung der Eingaben ergibt sich folgender Wert: </span><span class="result_number">0</span></div>
-                                        </td>
-                                        </tr>
-                                    </table>
-
-                                    <div id="test">Hallo</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td valign="bottom">
-                                    <div class="text">
-                                        <p>
-                                            Diese Platform dient als Anwendungsbeispiel für den Naive-Bayes-Algorithmus. Benutzt werden hierfür die Hotelbewertungen von Tripadvisor.
-                                            Die Genauigkeit des Classifiers beträgt <span id="accuracy" style="color: #f46d43;"></span>. Zum Trainieren des Classifiers wurden <span id="valid" style="color:#000"></span> Datensätze verwendet.
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-        </div>
+<div id="container">
+    <h1>Beispiel: Tripadvisor Hotelbewertungen</h1>
+    <div class="text_container">
+        <h3>Testen Sie den Algorithmus indem Sie unten die gewünschten Werte eingeben!</h3>
+        <table id="tryit">
+            <tr>
+                <td id="input_form">
+                    <table>
+                        <tr>
+                            <td class="input_title"><h3>Service:</h3></td>
+                            <td class="input_field"><input type="text" name="service" id="service"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_title"><h3>Sauberkeit:</h3></td>
+                            <td class="input_field"><input type="text" name="cleanliness" id="cleanliness"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_title"><h3>Wert:</h3></td>
+                            <td class="input_field"><input type="text" name="value" id="value"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_title"><h3>Schlafqualität:</h3></td>
+                            <td class="input_field"><input type="text" name="sleep_quality" id="sleep_quality"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_title"><h3>Lage:</h3></td>
+                            <td class="input_field"><input type="text" name="location" id="location"></td>
+                        </tr>
+                        <tr>
+                            <td class="input_title"><h3>Räumlichkeiten:</h3></td>
+                            <td class="input_field"><input type="text" name="rooms" id="rooms"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="button">send</button>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+                <td id="result">
+                    <div><span class="result_text">Nach Verrechnung der Eingaben ergibt sich folgender Wert als Gesamtbewertung: </span><span
+                            class="result_number"></span></div>
+                </td>
+            </tr>
+        </table>
+        <div><p id="error" class="text_dark"></p></div>
+        <p class="text">
+            Diese Platform dient als Anwendungsbeispiel für den Naive-Bayes-Algorithmus. Benutzt werden hierfür die
+            Hotelbewertungen von Tripadvisor.
+            Die Genauigkeit des Classifiers beträgt <span id="accuracy"></span>. Zum Trainieren des Classifiers wurden
+            <span id="valid"></span> Datensätze verwendet.
+        </p>
     </div>
+</div>
 </body>
 </html>
