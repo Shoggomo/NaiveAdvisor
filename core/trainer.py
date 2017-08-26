@@ -2,6 +2,7 @@ import nltk
 from nltk.classify import naivebayes
 from data_processing_helper import *
 from review_reader import *
+import time
 
 class Trainer(object):
     '''
@@ -110,7 +111,9 @@ class Trainer(object):
             finally:
                   next_reviews = review_reader.take_next() # file has been processed, using next file
 
+        print('***Starting training: This may take several minutes.***')
         classifier = naivebayes.NaiveBayesClassifier.train(all_training_features) # training classifier with all_featuers
+        print('***Testing with testset: This may take several minutes.***')
         accuracy = nltk.classify.accuracy(classifier, all_test_features)
         classifier.show_most_informative_features(5) # printing most informative features in console
         callback(classifier, (this_valid_features, this_invalid_features, accuracy)) # returning a tupel, index 0 is the classifier and index 1
