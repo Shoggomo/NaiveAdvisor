@@ -52,10 +52,3 @@ class SuperVisor(object):
             Trainer.train_classifier(self.on_trained_classifier, max_files)
         else:
             self.loaded_callback(self)
-
-
-def loaded(supervisor):
-    pass
-
-SuperVisor(loaded)
-
