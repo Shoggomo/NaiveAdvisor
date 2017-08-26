@@ -14,8 +14,8 @@ class SuperVisor(object):
         Callback method, called when classifier has been trained.
         '''
         Classifier.save_classifier(trained_classifier)
-        Classifier.save_statistics(statistics)
-        self.statistics = statistics
+        Classifier.save_statistics(statistics) # saving statistics
+        self.statistics = Classifier.read_statistics() # reading saved statistics
         self.loaded_callback(self)
 
     def classify(self, features):

@@ -16,7 +16,6 @@ def main():
     '''
     # validating arguments
     should_train = False
-    print(sys.argv)
     if len(sys.argv) is 2:
         # checking arguments for --ft flag
         if sys.argv[1] == '--ft':
