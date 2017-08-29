@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="stylesheet.css">
-    <script src="request/request.js"></script>
+    <script src="request.js"></script>
     <script src="get_data.js" defer></script>
     <meta charset="UTF-8">
     <title>Beispiel: Naive Bayes</title>
@@ -11,58 +11,63 @@
 <body>
 <div id="container">
     <h1>Beispiel: Tripadvisor Hotelbewertungen</h1>
-    <div class="text_container">
-        <h3>Testen Sie den Algorithmus indem Sie unten die gewünschten Werte eingeben!</h3>
-        <table id="tryit">
-            <tr>
-                <td id="input_form">
-                    <table>
+    <table >
+        <tr>
+            <td class="left_container" valign="top">
+                <p>
+                    Diese Anwendung ist ein Anwendungsbeispiel des Naive-Bayes-Algorithmus. Anhand <span id="valid"></span> Datensätze wurde der Classifier trainiert, welcher aktuell über eine Genauigkeit von <span id="accuracy"></span> verfügt.
+                </p>
+            </td>
+            <td class="margin_container">
+                &nbsp;
+            </td>
+            <td class="right_container">
+                <div>
+                    <h3>Testen Sie den Algorithmus indem Sie unten die gewünschten Werte eingeben!</h3>
+                    <table id="tryit">
                         <tr>
-                            <td class="input_title"><h3>Service:</h3></td>
-                            <td class="input_field"><input type="text" name="service" id="service"></td>
-                        </tr>
-                        <tr>
-                            <td class="input_title"><h3>Sauberkeit:</h3></td>
-                            <td class="input_field"><input type="text" name="cleanliness" id="cleanliness"></td>
-                        </tr>
-                        <tr>
-                            <td class="input_title"><h3>Wertigkeit:</h3></td>
-                            <td class="input_field"><input type="text" name="value" id="value"></td>
-                        </tr>
-                        <tr>
-                            <td class="input_title"><h3>Schlafqualität:</h3></td>
-                            <td class="input_field"><input type="text" name="sleep_quality" id="sleep_quality"></td>
-                        </tr>
-                        <tr>
-                            <td class="input_title"><h3>Lage:</h3></td>
-                            <td class="input_field"><input type="text" name="location" id="location"></td>
-                        </tr>
-                        <tr>
-                            <td class="input_title"><h3>Räumlichkeiten:</h3></td>
-                            <td class="input_field"><input type="text" name="rooms" id="rooms"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button id="button">send</button>
+                            <td id="input_form">
+                                <table>
+                                    <tr>
+                                        <td class="input_title"><h3>Service:</h3></td>
+                                        <td class="input_field"><input type="text" name="service" id="service"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="input_title"><h3>Sauberkeit:</h3></td>
+                                        <td class="input_field"><input type="text" name="cleanliness" id="cleanliness">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="input_title"><h3>Wertigkeit:</h3></td>
+                                        <td class="input_field"><input type="text" name="value" id="value"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="input_title"><h3>Schlafqualität:</h3></td>
+                                        <td class="input_field"><input type="text" name="sleep_quality"
+                                                                       id="sleep_quality"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="input_title"><h3>Lage:</h3></td>
+                                        <td class="input_field"><input type="text" name="location" id="location"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="input_title"><h3>Räumlichkeiten:</h3></td>
+                                        <td class="input_field"><input type="text" name="rooms" id="rooms"></td>
+                                    </tr>
+                                </table>
+
                             </td>
-                            <td></td>
+                            <td id="result">
+                                <div><span class="result_text">Nach Verrechnung der Eingaben ergibt sich folgender Wert als Gesamtbewertung: </span><span class="result_number"></span></div>
+                            </td>
                         </tr>
                     </table>
-                </td>
-                <td id="result">
-                    <div><span class="result_text">Nach Verrechnung der Eingaben ergibt sich folgender Wert als Gesamtbewertung: </span><span
-                            class="result_number"></span></div>
-                </td>
-            </tr>
-        </table>
-        <div><p id="error" class="text_dark"></p></div>
-        <p class="text">
-            Diese Platform dient als Anwendungsbeispiel für den Naive-Bayes-Algorithmus. Benutzt werden hierfür die
-            Hotelbewertungen von Tripadvisor.
-            Die Genauigkeit des Classifiers beträgt <span id="accuracy"></span>. Zum Trainieren des Classifiers wurden
-            <span id="valid"></span> Datensätze verwendet.
-        </p>
-    </div>
+                    <div><p id="error" class="text_dark"></p></div>
+                    <div id="button_container"><span id="button">Bestätigen</span></div>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

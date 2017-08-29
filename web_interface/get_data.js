@@ -17,7 +17,7 @@ function sendData(string) {
 });
 }
 
-/*****Eintragen der Werte*****/
+/*****Eintragen der Statistiken*****/
 function showStatistics(data) {
   statistics = JSON.parse(data);
   document.getElementById('accuracy').innerHTML = statistics.accuracy;
@@ -67,7 +67,8 @@ function clickHandler() {
   var values = [service, cleanliness, value, sleep_quality, location, rooms];
   var names = ['Service', 'Cleanliness', 'Value', 'Sleep Quality', 'Location', 'Rooms'];
 
-  /*****Versenden der Eingaben, falls Eingaben korrekt*****/
+
+  /*****"Versenden" der Eingaben, falls Eingaben korrekt*****/
   if (isCorrect(values)) {
     sendData(buildLink(names, values));
     document.querySelector('#error').innerHTML = " ";
