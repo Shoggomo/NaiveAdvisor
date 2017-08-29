@@ -40,9 +40,10 @@ function isCorrect(values) {
 
 /*****Zusmmensetzung des Links*****/
 function buildLink(names, values) {
+  var names = ['Service', 'Cleanliness', 'Value', 'Sleep Quality', 'Location', 'Rooms'];
   var string = "http://127.0.0.1:5000/classify?";
   var i;
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < names.length; i++) {
     string += names[i] + "=" + values[i] + "&";
   }
   string = string.substring(0, string.length - 1);
@@ -62,9 +63,7 @@ function getInput(){
 }
 /*****Geschehnisse bei Klick des Buttons*****/
 function clickHandler() {
-  var names = ['Service', 'Cleanliness', 'Value', 'Sleep Quality', 'Location', 'Rooms'];
-
-  /*****Nutzereingaben*****/
+    /*****Nutzereingaben*****/
   var values = getInput();
 
   /*****"Versenden" der Eingaben, falls Eingaben korrekt*****/
