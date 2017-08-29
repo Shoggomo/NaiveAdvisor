@@ -1,4 +1,4 @@
-/*****Holen der Daten*****/
+/*****Abfragen der Daten*****/
 function getStatistics() {
   request({
       url: "http://127.0.0.1:5000/statistics",
@@ -8,19 +8,19 @@ function getStatistics() {
 });
 }
 
-function sendData(string) {
+function getResult(string) {
   request({
       url: string,
       method: "GET",
       success: (data) => document.querySelector('.result_number').innerHTML = data,
-      error:() => document.getElementById('error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
+      error: () => document.getElementById('error').innerHTML = "Bei der Verbindung ist etws schief gelaufen. Versuchen Sie es erneut!",
 });
 }
 
 /*****Eintragen der Statistiken*****/
 function showStatistics(data) {
   statistics = JSON.parse(data);
-  document.getElementById('accuracy').innerHTML = statistics.accuracy;
+  document.getElementById('accuracy').innerHTML = Math.round(statistics.accuracy*10000)/100 + "%";
   document.getElementById('valid').innerHTML = statistics.valid;
 }
 
@@ -49,35 +49,41 @@ function buildLink(names, values) {
   return string;
 }
 
-/*****Button*****/
-var element = document.getElementById('button');
-element.addEventListener('click', clickHandler);
-var elementIsClicked = false;
-
-/*****Geschehnisse bei Klick des Buttons*****/
-function clickHandler() {
-  /*****Nutzereingaben*****/
+/*****Abfragen der Nutzereingaben*****/
+function getInput(){
   var service = document.getElementById('service').value;
   var cleanliness = document.getElementById('cleanliness').value;
   var value = document.getElementById('value').value;
   var sleep_quality = document.getElementById('sleep_quality').value;
   var location = document.getElementById('location').value;
   var rooms = document.getElementById('rooms').value;
-
   var values = [service, cleanliness, value, sleep_quality, location, rooms];
+  return values;
+}
+/*****Geschehnisse bei Klick des Buttons*****/
+function clickHandler() {
   var names = ['Service', 'Cleanliness', 'Value', 'Sleep Quality', 'Location', 'Rooms'];
 
+  /*****Nutzereingaben*****/
+  var values = getInput();
 
   /*****"Versenden" der Eingaben, falls Eingaben korrekt*****/
   if (isCorrect(values)) {
-    sendData(buildLink(names, values));
-    document.querySelector('#error').innerHTML = " ";
+    getResult(buildLink(names, values));
+    document.querySelector('#error').innerHTML = " ";// Sofern bei einem Test zuvor Fehlermeldungen entstanden, werden diese gelöscht.
   }
   else {
-    document.querySelector('.result_number').innerHTML = " ";
+    document.querySelector('.result_number').innerHTML = " "; // Sofern bei einem Test zuvor ein gültiges Ergebnis entstand, wird dieses nun gelöscht.
   }
-  elementIsClicked = true;
 }
 
-/*****Eintragen der Daten*****/
-getStatistics();
+function main() {
+    /*****Eintragen der Daten*****/
+    getStatistics();
+
+    /*****Button*****/
+    var element = document.getElementById('button');
+    element.addEventListener('click', clickHandler);
+}
+
+main();
