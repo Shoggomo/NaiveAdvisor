@@ -28,12 +28,10 @@ function showStatistics(data) {
 
 /*****Kontrolle der Eingabe*****/
 function isCorrect(values) {
-  console.log(values);
   var j;
   for (j = 0; j < values.length; j++) {
     if (isNaN(values[j]) || (values[j] < 1 || values[j] > 5)) {
       document.getElementById('error').innerHTML = "Einer der Werte ist nicht zulässig. Beachten Sie, dass es sich bei Ihrer Eingabe um Zahlen zwischen 1 und 5 handeln muss";
-      console.log(values[j]);
       return false;
     }
   }
