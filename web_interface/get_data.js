@@ -1,3 +1,5 @@
+// Sarah Kocher:
+
 /*****Abfragen der Daten*****/
 function getStatistics() {
   request({
