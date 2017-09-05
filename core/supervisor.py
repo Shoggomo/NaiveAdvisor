@@ -1,3 +1,5 @@
+# Matthias Herrmann:
+
 from classifier import *
 from trainer import *
 

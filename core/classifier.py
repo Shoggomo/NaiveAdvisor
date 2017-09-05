@@ -1,3 +1,5 @@
+# Matthias Herrmann:
+
 '''
     Providing an interface for handling iteraction
     with the classifier.
