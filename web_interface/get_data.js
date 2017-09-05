@@ -41,7 +41,7 @@ function isCorrect(values) {
 }
 
 /*****Zusmmensetzung des Links*****/
-function buildLink(names, values) {
+function buildLink(values) {
   var names = ['Service', 'Cleanliness', 'Value', 'Sleep Quality', 'Location', 'Rooms'];
   var string = "http://127.0.0.1:5000/classify?";
   var i;
@@ -70,7 +70,7 @@ function clickHandler() {
 
   /*****"Versenden" der Eingaben, falls Eingaben korrekt*****/
   if (isCorrect(values)) {
-    getResult(buildLink(names, values));
+    getResult(buildLink(values));
     document.querySelector('#error').innerHTML = " ";// Sofern bei einem Test zuvor Fehlermeldungen entstanden, werden diese gelöscht.
   }
   else {
