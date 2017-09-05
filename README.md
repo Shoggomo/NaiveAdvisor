@@ -25,6 +25,8 @@ The web interface can be accessed over the ``index.html`` file in the ``web_inte
 
 The training data can be pulled from ``http://times.cs.uiuc.edu/~wang296/Data/``, have to be in json format and need to be in a ``json`` directory in the project root.
 
+![folder structure](folder-structure.png)
+
 Now you can start the program with forced training by using the `--ft` flag like this:
 
 ```
