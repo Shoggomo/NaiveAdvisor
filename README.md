@@ -1,4 +1,4 @@
-# IsysNaive
+# NaïveAdvisor
 
 A Naive-Bayes-Classifier trained with subreviews from TripAdvisor to calculate a overall rating based on given subratings.
 
